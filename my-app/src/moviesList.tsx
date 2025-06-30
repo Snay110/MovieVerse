@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, UseDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import fetchPopularMovies from "./movieSlice";
 
 const moviesList: React.FC = () => {
