@@ -1,10 +1,11 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import type { PayloadAction } from "@reduxjs/toolkit";
+const apiKey = import.meta.env.VITE_API_KEY;
 export const fetchAsync = createAsyncThunk<Movie[]>(
   "movies/fetchAsync",
   async () => {
-    const response = await axios.get("https://api.example.com/movies");
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`);
     return response.data.results;
   }
 );
@@ -24,7 +25,6 @@ interface MovieState {
   error: string | null;
 }
 
-е;
 const initialState: MovieState = {
   movies: [],
   isLoading: false,
@@ -50,8 +50,7 @@ const moviesSlice = createSlice({
       )
       .addCase(fetchAsync.rejected, (state, action) => {
         state.isLoading = false;
-        state.error =
-          action.error.message || " A дальше что-то пошло не так";
+        state.error = action.error.message || "And then something went wrong";
       });
   },
 });
