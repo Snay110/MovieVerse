@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
 const apiKey = import.meta.env.VITE_API_KEY;
-export const fetchAsync = createAsyncThunk<Movie[]>(
+export const fetchPopularMovies = createAsyncThunk<Movie[]>(
   "movies/fetchAsync",
   async () => {
     const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`);
@@ -37,18 +37,18 @@ const moviesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAsync.pending, (state) => {
+      .addCase(fetchPopularMovies.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(
-        fetchAsync.fulfilled,
+        fetchPopularMovies.fulfilled,
         (state, action: PayloadAction<Movie[]>) => {
           state.movies = action.payload;
           state.isLoading = false;
         }
       )
-      .addCase(fetchAsync.rejected, (state, action) => {
+      .addCase(fetchPopularMovies.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || "And then something went wrong";
       });
