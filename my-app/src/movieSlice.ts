@@ -2,16 +2,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
 const apiKey = import.meta.env.VITE_API_KEY;
-export const fetchPopularMovies = createAsyncThunk<Movie[]>(
+export  const fetchPopularMovies = createAsyncThunk<Movie[],string>(
   "movies/fetchAsync",
-  async () => {
-    const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`);
+  async (query:string) => {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&query=${query}`);
     return response.data.results;
   }
 );
 
 interface Movie {
-  id: string;
+  id: number;
   title: string;
   poster_path: string;
   overview: string;
