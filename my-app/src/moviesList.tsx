@@ -19,9 +19,9 @@ const MoviesList: React.FC = () => {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Введите название фильма"
+        placeholder="Enter movie title"
       />
-      <button type="submit">Поиск</button>
+      <button type="submit">Search</button>
     </form>
   );
 };
