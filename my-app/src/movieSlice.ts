@@ -1,4 +1,4 @@
-import { createSlice,  } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { fetchPopularMovies } from "./movies.api";
 import type { PayloadAction } from "@reduxjs/toolkit";
 export interface Movie {
@@ -34,7 +34,7 @@ const moviesSlice = createSlice({
       })
       .addCase(
         fetchPopularMovies.fulfilled,
-        (state, action:PayloadAction <Movie[]>) => {
+        (state, action: PayloadAction<Movie[]>) => {
           state.movies = action.payload;
           state.isLoading = false;
         }

@@ -3,6 +3,9 @@ import { fetchPopularMovies } from "./movies.api";
 import { useAppDispatch } from "./hooks/appDispatch";
 import { useSelector } from "react-redux";
 import { selectError, selectIsLoading, selectMovies } from "./movies.selector";
+import MovieCard from "./movieCard";
+import ErrorMessage from "./errorMessage";
+import Loader from "./loader";
 const MoviesList = () => {
   const [query, setQuery] = useState("");
   const dispatch = useAppDispatch();
@@ -17,7 +20,8 @@ const MoviesList = () => {
       dispatch(fetchPopularMovies(query.trim()));
     }
   };
-
+  if (isLoading) return <Loader />;
+  if (error) return <ErrorMessage message={error} />;
   return (
     <>
       {isLoading && <p>Loading...</p>}
@@ -38,6 +42,9 @@ const MoviesList = () => {
             <p>{movie.overview}</p>
           </div>
         ))}
+      {movies.map((movie) => (
+        <MovieCard key={movie.id} {...movie} />
+      ))}
     </>
   );
 };

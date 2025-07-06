@@ -11,16 +11,16 @@ const MovieCard: React.FC<MovieCardProps> = ({
   poster_path,
   overview,
   release_date,
-  vote_average
+  vote_average,
 }) => {
-    return(
-        <div>
-            <img src={`https://image.tmdb.org/t/p/w500 ${poster_path}`}/>"
-            <h2>{title}</h2>
-            <p>{release_date}</p>
-            <p>{overview}</p>
-            <p>{vote_average}</p>
-        </div>
-    )
+  return (
+    <div>
+      <img src={`https://image.tmdb.org/t/p/w500 ${poster_path}`} />"
+      <h2>{title}</h2>
+      <p>{release_date}</p>
+      <p>{overview}</p>
+      <p>{vote_average}</p>
+    </div>
+  );
 };
-export default MovieCard
+export default MovieCard;
