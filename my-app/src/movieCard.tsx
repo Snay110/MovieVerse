@@ -1,6 +1,5 @@
 import React from "react";
 interface MovieCardProps {
-  id: number;
   title: string;
   poster_path: string;
   overview: string;
@@ -16,11 +15,12 @@ const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
     return(
         <div>
-            <img src="" alt="" />
-            <h2></h2>
-            <p></p>
-            <p></p>
-            <p></p>
+            <img src={`https://image.tmdb.org/t/p/w500 ${poster_path}`}/>"
+            <h2>{title}</h2>
+            <p>{release_date}</p>
+            <p>{overview}</p>
+            <p>{vote_average}</p>
         </div>
     )
 };
+export default MovieCard
