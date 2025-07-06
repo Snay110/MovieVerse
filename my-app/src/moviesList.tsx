@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { fetchPopularMovies } from "./movies.api";
 import { useAppDispatch } from "./hooks/appDispatch";
-
-const MoviesList: React.FC = () => {
+import { useSelector} from "react-redux";
+import type { RootState } from "./store"
+const MoviesList = () => {
   const [query, setQuery] = useState("");
   const dispatch = useAppDispatch();
+    const selector = useSelector((state:RootState)=> state.movies.movies);
+const isLoading = useSelector((state:RootState)=> state.movies.isLoading)
+const error = useSelector((state:RootState)=> state.movies.error)
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -14,6 +18,9 @@ const MoviesList: React.FC = () => {
   };
 
   return (
+ <>
+ {isLoading && <p>Loading...</p>}
+ {error && <p>{error}</p>}
     <form onSubmit={onSubmit}>
       <input
         type="text"
@@ -23,6 +30,8 @@ const MoviesList: React.FC = () => {
       />
       <button type="submit">Search</button>
     </form>
+    {selector}
+ </>
   );
 };
 
