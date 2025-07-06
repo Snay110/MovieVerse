@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchPopularMovies } from "./movieSlice";
+import { fetchPopularMovies } from "./movies.api";
 import { useAppDispatch } from "./hooks/appDispatch";
 
 const MoviesList: React.FC = () => {

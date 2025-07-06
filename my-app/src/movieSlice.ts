@@ -1,16 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice,  } from "@reduxjs/toolkit";
+import { fetchPopularMovies } from "./movies.api";
 import type { PayloadAction } from "@reduxjs/toolkit";
-const apiKey = import.meta.env.VITE_API_KEY;
-export  const fetchPopularMovies = createAsyncThunk<Movie[],string>(
-  "movies/fetchAsync",
-  async (query:string) => {
-    const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&query=${query}`);
-    return response.data.results;
-  }
-);
-
-interface Movie {
+export interface Movie {
   id: number;
   title: string;
   poster_path: string;
@@ -43,7 +34,7 @@ const moviesSlice = createSlice({
       })
       .addCase(
         fetchPopularMovies.fulfilled,
-        (state, action: PayloadAction<Movie[]>) => {
+        (state, action:PayloadAction <Movie[]>) => {
           state.movies = action.payload;
           state.isLoading = false;
         }
