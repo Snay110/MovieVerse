@@ -30,23 +30,25 @@ const MoviesList = () => {
         <input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+           onChange={(e) => setQuery(e.target.value)}
+        className="p rounded border w-full"
           placeholder="Enter movie title"
         />
-        <button type="submit">Search</button>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded" type="submit">Search</button>
       </form>
       {movies.length > 0 &&
         movies.map((movie) => (
-          <div key={movie.id}>
-            <h3>{movie.title}</h3>
+          <div  className="bg-gray-800 p-4 rounded text-white" key={movie.id}>
+            <h3 className="text-lg font-bold"> {movie.title}</h3>
             <p>{movie.overview}</p>
           </div>
         ))}
       {movies.map((movie) => (
         <MovieCard key={movie.id} {...movie} />
       ))}
+      
     </>
   );
 };
-
+ 
 export default MoviesList;
