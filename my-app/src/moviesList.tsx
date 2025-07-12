@@ -4,7 +4,9 @@ import { useAppDispatch } from "./hooks/appDispatch";
 import { useSelector } from "react-redux";
 import { selectError, selectIsLoading, selectMovies } from "./movies.selector";
 import MovieCard from "./movieCard";
+
 import ErrorMessage from "./errorMessage";
+import { Button } from "./components/ui/button";
 import Loader from "./loader";
 const MoviesList = () => {
   const [query, setQuery] = useState("");
@@ -22,33 +24,34 @@ const MoviesList = () => {
   };
   if (isLoading) return <Loader />;
   if (error) return <ErrorMessage message={error} />;
-  return (
-    <>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      <form onSubmit={onSubmit}>
+ return (
+  <div className="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] px-4 py-8">
+    <div className="max-w-xl mx-auto space-y-6">
+      {isLoading && <p className="text-muted-foreground">Loading...</p>}
+      {error && <p className="text-destructive">{error}</p>}
+
+      <form onSubmit={onSubmit} className="space-y-4">
         <input
           type="text"
           value={query}
-           onChange={(e) => setQuery(e.target.value)}
-        className="p rounded border w-full"
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-full px-4 py-2 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder="Enter movie title"
         />
-        <button className="bg-blue-500 text-white px-4 py-2 rounded" type="submit">Search</button>
+        <Button type="submit" className="w-full">
+          Submit
+        </Button>
       </form>
-      {movies.length > 0 &&
-        movies.map((movie) => (
-          <div  className="bg-gray-800 p-4 rounded text-white" key={movie.id}>
-            <h3 className="text-lg font-bold"> {movie.title}</h3>
-            <p>{movie.overview}</p>
-          </div>
-        ))}
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} {...movie} />
-      ))}
-      
-    </>
-  );
+
+      {movies.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} {...movie} />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+)
 };
- 
-export default MoviesList;
+export default MoviesList 
