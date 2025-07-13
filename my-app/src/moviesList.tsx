@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { selectError, selectIsLoading, selectMovies } from "./movies.selector";
 import MovieCard from "./movieCard";
 import ErrorMessage from "./errorMessage";
-import { Button } from "./components/ui/button";
 import Loader from "./loader";
 
 const MoviesList = () => {
@@ -39,9 +38,7 @@ const MoviesList = () => {
             className="w-full px-4 py-2 rounded-md border border-border bg-white/10 text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="Enter movie title"
           />
-          <Button type="submit" className="w-full">
-            Submit
-          </Button>
+        
         </form>
 
         {movies.length > 0 && (

@@ -1,21 +1,25 @@
 import React from "react";
-interface MovieCardProps {
+
+type MovieCardProps = {
   title: string;
   poster_path: string;
   overview: string;
   release_date: string;
   vote_average: number;
-}
+  onClick: () => void;
+};
+
 const MovieCard: React.FC<MovieCardProps> = ({
   title,
   poster_path,
   overview,
   release_date,
   vote_average,
+  onClick,
 }) => {
   return (
-    <div>
-      <img src={`https://image.tmdb.org/t/p/w500 ${poster_path}`} />"
+    <div onClick={onClick} className="cursor-pointer">
+      <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
       <h2>{title}</h2>
       <p>{release_date}</p>
       <p>{overview}</p>
@@ -23,4 +27,5 @@ const MovieCard: React.FC<MovieCardProps> = ({
     </div>
   );
 };
+
 export default MovieCard;

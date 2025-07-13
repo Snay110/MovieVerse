@@ -5,7 +5,7 @@ function App() {
   return (
     <div
       className="relative min-h-screen bg-cover bg-center"
-      style={{ backgroundImage: "url('/asasa.jpg')" }}
+      style={{ backgroundImage: "url('/1.jpg')" }}
     >
       <div className="absolute inset-0 bg-black/40 z-0" />
 
