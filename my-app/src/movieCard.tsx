@@ -12,18 +12,20 @@ type MovieCardProps = {
 const MovieCard: React.FC<MovieCardProps> = ({
   title,
   poster_path,
-  overview,
-  release_date,
-  vote_average,
   onClick,
 }) => {
+  const posterUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
+
   return (
-    <div onClick={onClick} className="cursor-pointer">
-      <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
-      <h2>{title}</h2>
-      <p>{release_date}</p>
-      <p>{overview}</p>
-      <p>{vote_average}</p>
+    <div
+      onClick={onClick}
+      className="cursor-pointer transition-transform hover:scale-105"
+    >
+      <img
+        src={posterUrl}
+        alt={title}
+        className="w-full h-auto rounded shadow-md"
+      />
     </div>
   );
 };
