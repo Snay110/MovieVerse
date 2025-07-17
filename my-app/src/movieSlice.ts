@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchPopularMovies } from "./movies.api";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { searchMoviesByQuery } from "./movies.api2";
 export interface Movie {
   id: number;
   title: string;
@@ -40,6 +41,20 @@ const moviesSlice = createSlice({
         }
       )
       .addCase(fetchPopularMovies.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || "And then something went wrong";
+      })
+      .addCase(searchMoviesByQuery.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(
+        searchMoviesByQuery.fulfilled,
+        (state, action: PayloadAction<Movie[]>) => {
+          state.movies = action.payload;
+          state.isLoading = false;
+        }
+      )
+      .addCase(searchMoviesByQuery.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || "And then something went wrong";
       });
