@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { searchMoviesByQuery } from "./movies.api2";
+import { searchMoviesByQuery } from ".//createAsyncThunk/movies.api2";
 import { useAppDispatch } from "./hooks/appDispatch";
 
 const SearchMovies = () => {

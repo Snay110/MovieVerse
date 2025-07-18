@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchPopularMovies } from "./movies.api";
+import { fetchPopularMovies } from ".//createAsyncThunk/movies.api";
 import { useAppDispatch } from "./hooks/appDispatch";
 import { useSelector } from "react-redux";
 import { selectError, selectIsLoading, selectMovies } from "./movies.selector";
@@ -10,9 +10,9 @@ import MovieModal from "./movieModal";
 import ErrorMessage from "./errorMessage";
 import Loader from "./loader";
 import SearchMovies from "./inputMovies";
-
 const MoviesList = () => {
   const [selectedMovie, setSelectedMovie] = useState<MoviesType | null>(null);
+
 
   const dispatch = useAppDispatch();
   const movies = useSelector(selectMovies);

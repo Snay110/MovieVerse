@@ -1,24 +1,30 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 type MovieCardProps = {
+  id:number
   title: string;
   poster_path: string;
   overview: string;
   release_date: string;
   vote_average: number;
-  onClick: () => void;
 };
 
 const MovieCard: React.FC<MovieCardProps> = ({
+  id,
   title,
   poster_path,
-  onClick,
 }) => {
+  const navigate = useNavigate();
   const posterUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
+
+  const handleClick = () => {
+    navigate(`/movies/${id}`);
+  };
 
   return (
     <div
-      onClick={onClick}
+      onClick={handleClick}
       className="cursor-pointer transition-transform hover:scale-105"
     >
       <img
