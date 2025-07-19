@@ -3,9 +3,11 @@ import { fetchPopularMovies } from "./createAsyncThunk/movies.api";
 import { searchMoviesByQuery } from "./createAsyncThunk/movies.api2";
 import { fetchMovieById } from "./createAsyncThunk/movieDetail";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { fetchMovieVideo } from "./createAsyncThunk/fetchMovieVideo";
 
 export interface Movie {
-  id: number;
+  videoUrl:string,
+  id: string;
   title: string;
   poster_path: string;
   overview: string;
@@ -14,6 +16,7 @@ export interface Movie {
 }
 
 interface MovieState {
+  videoUrl: string | null;
   movies: Movie[];
   isLoading: boolean;
   error: string | null;
@@ -21,6 +24,7 @@ interface MovieState {
 }
 
 const initialState: MovieState = {
+  videoUrl: "",
   movies: [],
   isLoading: false,
   error: null,
@@ -67,7 +71,13 @@ const moviesSlice = createSlice({
         (state, action: PayloadAction<Movie>) => {
           state.selectedMovie = action.payload;
         }
-      );
+      ).addCase(fetchMovieVideo.fulfilled, (state, action) => {
+  state.videoUrl = `https://www.youtube.com/embed/${action.payload}`;
+})
+.addCase(fetchMovieVideo.rejected, (state) => {
+  state.videoUrl = null;
+})
+     
   },
 });
 

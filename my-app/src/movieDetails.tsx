@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppDispatch } from "./hooks/appDispatch";
-import { fetchMovieById } from "./createAsyncThunk/movieDetail";
 import { useAppSelector } from "./hooks/useAppSelector";
+import { fetchMovieById } from "./createAsyncThunk/movieDetail";
+import { fetchMovieVideo } from "./createAsyncThunk/fetchMovieVideo";
+import VideoPlayer from "./videoPlayer";
+import type { RootState } from "./store";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -11,17 +14,24 @@ const MovieDetails = () => {
   useEffect(() => {
     if (id) {
       dispatch(fetchMovieById(id));
+      dispatch(fetchMovieVideo(id));
     }
-  }, [id]);
+  }, [dispatch, id]);
 
-  const { selectedMovie, isLoading } = useAppSelector((state) => state.movies); 
+  const { selectedMovie, isLoading, videoUrl } = useAppSelector(
+    (state: RootState) => state.movies
+  );
 
   if (isLoading) {
     return <div className="text-center text-white mt-10">Loading...</div>;
   }
 
   if (!selectedMovie) {
-    return <div className="text-center text-white mt-10">Movie not found</div>;
+    return (
+      <div className="text-center text-white mt-10">
+        <p>Movie not found</p>
+      </div>
+    );
   }
 
   return (
@@ -33,6 +43,7 @@ const MovieDetails = () => {
         alt={selectedMovie.title}
         className="w-full max-w-md rounded"
       />
+      {videoUrl && <VideoPlayer videoUrl={videoUrl} />}
     </div>
   );
 };

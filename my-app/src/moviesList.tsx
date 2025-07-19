@@ -35,7 +35,6 @@ const MoviesList = () => {
               <MovieCard
                 key={movie.id}
                 {...movie}
-                onClick={() => setSelectedMovie(movie)}
               />
             ))}
           </div>

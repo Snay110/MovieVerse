@@ -18,7 +18,7 @@ function App() {
           <div className="w-full px-4 mt-16">
             <Routes>
               <Route path="/" element={<MoviesList />} />
-              <Route path="/movie/:id" element={<MovieDetails />} />
+              <Route path="/movies/:id" element={<MovieDetails />} />
             </Routes>
           </div>
         </div>
