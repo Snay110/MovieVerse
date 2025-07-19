@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import type { Movie } from "@/movieSlice";
+import type { Movie } from "@/entities/movieSlice";
 
 
 const apiKey = import.meta.env.VITE_API_KEY;

@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { useAppDispatch } from "./hooks/appDispatch";
-import { useAppSelector } from "./hooks/useAppSelector";
-import { fetchMovieById } from "./createAsyncThunk/movieDetail";
-import { fetchMovieVideo } from "./createAsyncThunk/fetchMovieVideo";
-import VideoPlayer from "./videoPlayer";
-import type { RootState } from "./store";
+import { useAppDispatch } from "@/shared/useAppDispatch";
+import { useAppSelector } from "@/shared/useAppSelector";
+import { fetchMovieById } from "@/shared/movieDetail";
+import { fetchMovieVideo } from "../shared/fetchMovieVideo";
+import VideoPlayer from "@/features/videoPlayer";
+import type { RootState } from "../app/store";
 
 const MovieDetails = () => {
   const { id } = useParams();

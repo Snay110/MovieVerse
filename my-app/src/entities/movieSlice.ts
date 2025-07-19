@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPopularMovies } from "./createAsyncThunk/movies.api";
-import { searchMoviesByQuery } from "./createAsyncThunk/movies.api2";
-import { fetchMovieById } from "./createAsyncThunk/movieDetail";
+import { fetchPopularMovies } from "@/shared/movies.api";
+import { searchMoviesByQuery } from "@/shared/movies.api2";
+import { fetchMovieById } from "@/shared/movieDetail";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { fetchMovieVideo } from "./createAsyncThunk/fetchMovieVideo";
+import { fetchMovieVideo } from "@/shared/fetchMovieVideo";
 
 export interface Movie {
-  videoUrl:string,
+  videoUrl: string;
   id: string;
   title: string;
   poster_path: string;
@@ -71,13 +71,13 @@ const moviesSlice = createSlice({
         (state, action: PayloadAction<Movie>) => {
           state.selectedMovie = action.payload;
         }
-      ).addCase(fetchMovieVideo.fulfilled, (state, action) => {
-  state.videoUrl = `https://www.youtube.com/embed/${action.payload}`;
-})
-.addCase(fetchMovieVideo.rejected, (state) => {
-  state.videoUrl = null;
-})
-     
+      )
+      .addCase(fetchMovieVideo.fulfilled, (state, action) => {
+        state.videoUrl = `https://www.youtube.com/embed/${action.payload}`;
+      })
+      .addCase(fetchMovieVideo.rejected, (state) => {
+        state.videoUrl = null;
+      });
   },
 });
 

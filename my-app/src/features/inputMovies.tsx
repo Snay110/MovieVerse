@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { searchMoviesByQuery } from ".//createAsyncThunk/movies.api2";
-import { useAppDispatch } from "./hooks/appDispatch";
+import { searchMoviesByQuery } from "@/shared/movies.api2";
+import { useAppDispatch } from "@/shared/useAppDispatch";
 
 const SearchMovies = () => {
   const [query, setQuery] = useState("");

@@ -1,4 +1,4 @@
-import type { RootState } from "./store";
+import type { RootState } from "@/app/store";
 
 export const selectMovies = (state: RootState) => state.movies.movies;
 export const selectIsLoading = (state: RootState) => state.movies.isLoading;

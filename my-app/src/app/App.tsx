@@ -1,8 +1,7 @@
-import MoviesList from "./moviesList";
-import { Header } from "./header";
+import MoviesList from "@/pages/homePage";
+import { Header } from "@/widgets/header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./index.css";
-import MovieDetails from "./movieDetails";
+import MovieDetails from "@/pages/moviePage";
 
 function App() {
   return (

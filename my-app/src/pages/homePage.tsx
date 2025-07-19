@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { fetchPopularMovies } from ".//createAsyncThunk/movies.api";
-import { useAppDispatch } from "./hooks/appDispatch";
+import { fetchPopularMovies } from "@/shared/movies.api";
+import { useAppDispatch } from "@/shared/useAppDispatch";
 import { useSelector } from "react-redux";
-import { selectError, selectIsLoading, selectMovies } from "./movies.selector";
-import MovieCard from "./movieCard";
+import { selectError, selectIsLoading, selectMovies } from "../shared/movies.selector";
+import MovieCard from "@/features/movieCard";
 import { useEffect } from "react";
-import type { MoviesType } from "./type";
-import MovieModal from "./movieModal";
-import ErrorMessage from "./errorMessage";
-import Loader from "./loader";
-import SearchMovies from "./inputMovies";
+import type { MoviesType } from "../entities/type";
+import MovieModal from "@/widgets/movieModal";
+import ErrorMessage from "@/entities/errorMessage";
+import Loader from "@/widgets/loader";
+import SearchMovies from "@/features/inputMovies";
 const MoviesList = () => {
   const [selectedMovie, setSelectedMovie] = useState<MoviesType | null>(null);
-
 
   const dispatch = useAppDispatch();
   const movies = useSelector(selectMovies);
@@ -32,10 +31,7 @@ const MoviesList = () => {
         {movies.length > 0 && (
           <div className="mt-48 px-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {movies.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                {...movie}
-              />
+              <MovieCard key={movie.id} {...movie} />
             ))}
           </div>
         )}
