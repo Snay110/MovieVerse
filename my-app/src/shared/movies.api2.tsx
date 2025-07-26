@@ -8,7 +8,7 @@ export const searchMoviesByQuery = createAsyncThunk<
   { rejectValue: string }
 >("movies/searchByQuery", async (query: string) => {
   const response = await axios.get(
-    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
+    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`,
   );
   return response.data.results;
 });

@@ -46,7 +46,7 @@ const moviesSlice = createSlice({
         (state, action: PayloadAction<Movie[]>) => {
           state.movies = action.payload;
           state.isLoading = false;
-        }
+        },
       )
       .addCase(fetchPopularMovies.rejected, (state, action) => {
         state.isLoading = false;
@@ -60,7 +60,7 @@ const moviesSlice = createSlice({
         (state, action: PayloadAction<Movie[]>) => {
           state.movies = action.payload;
           state.isLoading = false;
-        }
+        },
       )
       .addCase(searchMoviesByQuery.rejected, (state, action) => {
         state.isLoading = false;
@@ -70,7 +70,7 @@ const moviesSlice = createSlice({
         fetchMovieById.fulfilled,
         (state, action: PayloadAction<Movie>) => {
           state.selectedMovie = action.payload;
-        }
+        },
       )
       .addCase(fetchMovieVideo.fulfilled, (state, action) => {
         state.videoUrl = `https://www.youtube.com/embed/${action.payload}`;

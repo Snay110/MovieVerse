@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { fetchPopularMovies } from "@/shared/movies.api";
 import { useAppDispatch } from "@/shared/useAppDispatch";
 import { useSelector } from "react-redux";
-import { selectError, selectIsLoading, selectMovies } from "../shared/movies.selector";
+import {
+  selectError,
+  selectIsLoading,
+  selectMovies,
+} from "../shared/movies.selector";
 import MovieCard from "@/features/movieCard";
 import { useEffect } from "react";
 import type { MoviesType } from "../entities/type";

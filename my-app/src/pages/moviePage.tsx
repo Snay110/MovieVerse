@@ -19,7 +19,7 @@ const MovieDetails = () => {
   }, [dispatch, id]);
 
   const { selectedMovie, isLoading, videoUrl } = useAppSelector(
-    (state: RootState) => state.movies
+    (state: RootState) => state.movies,
   );
 
   if (isLoading) {

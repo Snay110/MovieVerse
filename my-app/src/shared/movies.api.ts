@@ -6,8 +6,8 @@ export const fetchPopularMovies = createAsyncThunk<Movie[], string>(
   "movies/fetchPopularMovies",
   async () => {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`,
     );
     return response.data.results;
-  }
+  },
 );

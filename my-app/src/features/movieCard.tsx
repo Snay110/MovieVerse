@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 type MovieCardProps = {
-  id:number
+  id: number;
   title: string;
   poster_path: string;
   overview: string;
@@ -10,11 +10,7 @@ type MovieCardProps = {
   vote_average: number;
 };
 
-const MovieCard: React.FC<MovieCardProps> = ({
-  id,
-  title,
-  poster_path,
-}) => {
+const MovieCard: React.FC<MovieCardProps> = ({ id, title, poster_path }) => {
   const navigate = useNavigate();
   const posterUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
 

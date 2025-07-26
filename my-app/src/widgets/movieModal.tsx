@@ -1,7 +1,7 @@
 import React from "react";
-import type { MoviesType } from "../entities/type"
+import type { MoviesType } from "../entities/type";
 type MovieModalProps = {
-  movie: MoviesType
+  movie: MoviesType;
   onClose: () => void;
 };
 
